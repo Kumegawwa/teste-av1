@@ -1,10 +1,109 @@
-### Lista de Livros
-GET http://localhost:5231
-
-### Cadastrar Livro
-POST http://localhost:5231
+### Criar um Livro Válido
+POST http://localhost:5085/api/livros
 Content-Type: application/json
 
 {
-
+  "titulo": "O Senhor dos Anéis",
+  "autor": "J.R.R. Tolkien",
+  "categoriaId": 3
 }
+
+### Criar Livro com Título Curto (espera erro 400)
+POST http://localhost:5085/api/livros
+Content-Type: application/json
+
+{
+  "titulo": "Oi",
+  "autor": "Autor Válido",
+  "categoriaId": 2
+}
+
+### Criar Livro com Autor Curto (espera erro 400)
+POST http://localhost:5085/api/livros
+Content-Type: application/json
+
+{
+  "titulo": "Título Válido",
+  "autor": "Eu",
+  "categoriaId": 2
+}
+
+### Criar Livro com Categoria Inválida (espera erro 400)
+POST http://localhost:5085/api/livros
+Content-Type: application/json
+
+{
+  "titulo": "Livro de Categoria Inexistente",
+  "autor": "Autor Desconhecido",
+  "categoriaId": 99
+}
+
+### Listar Todos os Livros
+GET http://localhost:5085/api/livros
+
+### Obter Livro por ID Válido (use um ID que exista)
+GET http://localhost:5085/api/livros/1
+
+### Obter Livro por ID Inválido (espera erro 404)
+GET http://localhost:5085/api/livros/999
+
+### Atualizar Livro Válido (use um ID que exista)
+PUT http://localhost:5085/api/livros/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+  "autor": "J.R.R. Tolkien",
+  "categoriaId": 3
+}
+
+### Atualizar Livro com Título Curto (espera erro 400)
+PUT http://localhost:5085/api/livros/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "titulo": "O",
+  "autor": "J.R.R. Tolkien",
+  "categoriaId": 3
+}
+
+### Atualizar Livro com Autor Curto (espera erro 400)
+PUT http://localhost:5085/api/livros/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "titulo": "Título Válido",
+  "autor": "JR",
+  "categoriaId": 3
+}
+
+### Atualizar Livro com Categoria Inválida (espera erro 400)
+PUT http://localhost:5085/api/livros/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "titulo": "Título Válido",
+  "autor": "J.R.R. Tolkien",
+  "categoriaId": 101
+}
+
+### Atualizar Livro com ID Inexistente (espera erro 404)
+PUT http://localhost:5085/api/livros/999
+Content-Type: application/json
+
+{
+  "id": 999,
+  "titulo": "Livro Fantasma",
+  "autor": "Autor Fantasma",
+  "categoriaId": 1
+}
+
+### Remover Livro por ID Válido (use um ID que exista)
+DELETE http://localhost:5085/api/livros/1
+
+### Remover Livro por ID Inválido (espera erro 404)
+DELETE http://localhost:5085/api/livros/999
